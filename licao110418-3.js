@@ -1,5 +1,5 @@
 //Imprimir na tela os 10 primeiros números primos conhecidos
-const m = require('./funcoes');
+const m = require('./Consulta CEP/funcoes');
 const chalk = require('chalk');
 
 let primos = 0;

@@ -1,5 +1,5 @@
 const readline = require('readline');
-const m = require('./funcoes');
+const m = require('./Consulta CEP/funcoes');
 
 const rl = readline.createInterface({
     input: process.stdin,
