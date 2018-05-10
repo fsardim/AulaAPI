@@ -1,5 +1,5 @@
 const express = require('express');
-const request = require('request');
+const httpReq = require('request');
 const chalk = require('chalk');
 
 const app = express();
@@ -8,15 +8,45 @@ app.get('/', (request, response) => {
     response.status(200).send('API funcionando ok!');
 });
 app.get('/cep/:cep', (request, response) => {
+    console.log('GET /cep/cep');
     const cep = request.params.cep;
-    //JSON completo da resposta da API do VIA CEP
-    //link: https://viacep.com.br/ws/<CEP DE CONSULTA>/json
+    const url = `https://viacep.com.br/ws/${cep}/json`;
+    httpReq(url, (error, resposta, body) => {
+        if(error) {
+            response.status(500).send(error);
+        }
+        if(resposta.statusCode === 200) {
+            response.status(200).send(body);
+        }
+    });
 });
 app.get('/cep/:cep/rua', (request, response) => {
-    //Retornar nome da rua
+    console.log('GET /cep/cep/rua');
+    const cep = request.params.cep;
+    const url = `https://viacep.com.br/ws/${cep}/json`;
+    httpReq(url, (error, resposta, body) => {
+        if(error) {
+            response.status(500).send(error);
+        }
+        if(resposta.statusCode === 200) {
+            let api = JSON.parse(body);
+            response.status(200).send(api.logradouro);
+        }
+    });
 });
 app.get('/cep/:cep/bairro', (request, response) => {
-    //Retornar nome do bairro
+    console.log('GET /cep/cep/bairro');
+    const cep = request.params.cep;
+    const url = `https://viacep.com.br/ws/${cep}/json`;
+    httpReq(url, (error, resposta, body) => {
+        if(error) {
+            response.status(500).send(error);
+        }
+        if(resposta.statusCode === 200) {
+            let api = JSON.parse(body);
+            response.status(200).send(api.bairro);        
+        }
+    });
 });
 
 app.listen(3000, () => {
