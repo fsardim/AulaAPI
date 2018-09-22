@@ -60,6 +60,6 @@ app.get('/usuario', (request, response) => {
     console.log('GET /usuario');
     response.status(200).send(_bd);
 });
-app.listen(3000, () => {
-    console.log(chalk.green('Servidor rodando na porta 3000'));
+app.listen(80, () => {
+    console.log(chalk.green('Servidor rodando na porta 80'));
 });
