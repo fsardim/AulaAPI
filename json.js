@@ -26,6 +26,8 @@ for (num2;num2<matriz.length;num2++){
     num3++;
 }
 
+require('dotenv').config();
+console.log(process.env.NODE_ENV);
 
 
 
